@@ -1,18 +1,48 @@
 require 'opal'
+require 'rake/clean'
 
-directory 'ruby-app'
+RUBY_APP_DIR = 'ruby-app'
 
-desc "Build ruby-app"
-task :build => ['ruby-app'] do
-  env = Opal::Environment.new
-  env.append_path 'lib'
-  env.append_path '../shoes4/lib'
+OPAL_JS = "#{RUBY_APP_DIR}/opal.js"
+SHOES_JS = File.join RUBY_APP_DIR, 'shoes.js'
+APP_JS = File.join RUBY_APP_DIR, 'app.js'
 
-  puts 'after appending shoes path'
+CLEAN.include FileList[OPAL_JS, SHOES_JS, APP_JS]
 
-  File.open('ruby-app/app.js', 'w+') do |out|
-    puts 'before appending to out'
-    out << env["bootstrap"].to_s
-    puts 'after appending to out'
+directory RUBY_APP_DIR
+
+namespace :build do
+  desc "Build shoes"
+  task :shoes => [RUBY_APP_DIR] do
+    Opal::Processor.dynamic_require_severity = :warning
+
+    env = Opal::Environment.new
+    env.append_path 'lib'
+    env.append_path '../shoes4/lib'
+
+    shoes = env['shoes']
+    shoes.write_to SHOES_JS
+
+    # File.open('ruby-app/shoes.js', 'w+') do |out|
+    #   out << env["bootstrap"].to_s
+    # end
+  end
+
+  desc "Build Opal"
+  task :opal => [RUBY_APP_DIR] do
+    env = Opal::Environment.new
+    File.open(OPAL_JS, 'w+') do |out|
+      out << env["opal"].to_s
+    end
+  end
+
+  desc "Build app"
+  task :app => [RUBY_APP_DIR] do
+    File.open(APP_JS, 'w+') do |out|
+      out << Opal.compile(File.read('lib/app.rb'))
+    end
   end
 end
+
+
+task :build => ['build:shoes', 'build:app']

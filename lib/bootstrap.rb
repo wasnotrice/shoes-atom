@@ -1,6 +1,6 @@
+require 'opal'
+
 # Mostly copied from shoes.rb
-puts "Bootstrapping requires"
-STDERR.puts "Err bootstrapping requires"
 
 require 'pathname'
 # Opal doesn't like
@@ -58,25 +58,24 @@ require 'shoes/link_hover'
 require 'shoes/list_box'
 # Cannot handle dynamic require :shoes/logger:65
 # require 'shoes/logger'
-puts "after shoes/logger"
-require 'shoes/manual'
-require 'shoes/oval'
-require 'shoes/point'
-require 'shoes/progress'
-require 'shoes/radio'
-require 'shoes/rect'
-require 'shoes/shape'
-require 'shoes/slot_contents'
-require 'shoes/slot'
-require 'shoes/star'
-require 'shoes/sound'
-require 'shoes/text_block'
-require 'shoes/timer'
-require 'shoes/url'
-require 'shoes/widget'
+# Opal bails somewhere after this point with
+# Cannot handle dynamic require :shoes:
+# require 'shoes/manual'
+# require 'shoes/oval'
+# require 'shoes/point'
+# require 'shoes/progress'
+# require 'shoes/radio'
+# require 'shoes/rect'
+# require 'shoes/shape'
+# require 'shoes/slot_contents'
+# require 'shoes/slot'
+# require 'shoes/star'
+# require 'shoes/sound'
+# require 'shoes/text_block'
+# require 'shoes/timer'
+# require 'shoes/url'
+# require 'shoes/widget'
 
 # Now that we've required all of the Shoes deps
-puts "before shoes require in bootstrap"
-require 'shoes'
-puts "after shoes require in bootstrap"
+# require 'shoes'
 require 'app'
