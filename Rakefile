@@ -20,12 +20,8 @@ namespace :build do
     env.append_path 'lib'
     env.append_path '../shoes4/lib'
 
-    shoes = env['shoes']
+    shoes = env['bootstrap']
     shoes.write_to SHOES_JS
-
-    # File.open('ruby-app/shoes.js', 'w+') do |out|
-    #   out << env["bootstrap"].to_s
-    # end
   end
 
   desc "Build Opal"
@@ -46,3 +42,4 @@ end
 
 
 task :build => ['build:shoes', 'build:app']
+task :default => ['build']
