@@ -25,21 +25,33 @@ future.
 
 ## Getting started
 
-[Download atom-shell](https://github.com/atom/atom-shell/releases).
+[Download atom-shell](https://github.com/atom/atom-shell/releases) and install it. On OS X, unzip the download and drag it to `/Applications`.
 
 Pick a directory and clone this repository.
 
     cd ~/code
     git clone https://www.github.com/wasnotrice/shoes-atom
 
-Clone Shoes as a sibling of your `shoes-atom` and check out the `atom` branch.
+Clone Shoes as a sibling of your `shoes-atom` and check out the `opal` branch.
 
     cd ~/code
-    git clone https://www.github.com/shoes/shoes4
-    git checkout 'atom'
+    git clone https://www.github.com/wasnotrice/shoes4
+    cd shoes4
+    git checkout 'opal'
 
-Build the project.
+Build the project. This compiles Opal, Shoes, and a sample app. Build products
+get installed into the sample directory `ruby-app`.
 
-    cd shoes-atom
+    cd ../shoes-atom
     rake
+
+Open the app with your downloaded Atom shell. For OS X,
+
+    /Applications/Atom.app/Contents/MacOS/Atom ruby-app
+
+That's it!
+
+## Contributing
+
+Contributions are very welcome. Fork, hack, and make a pull request. Cheers!
 
