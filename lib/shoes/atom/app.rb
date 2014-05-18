@@ -44,6 +44,9 @@ class Shoes
         @started
       end
 
+      def open
+      end
+
       def width
         @browserWindow.getSize()[0]
       end
