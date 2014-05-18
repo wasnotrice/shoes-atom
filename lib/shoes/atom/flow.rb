@@ -10,7 +10,7 @@ class Shoes
           (function() {
             var flow = document.createElement('div');
             flow.classList.add('shoes-flow');
-            #{@parent.gui}.appendChild(flow);
+            #{@parent.real}.appendChild(flow);
             return flow;
           })()
         |

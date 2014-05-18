@@ -1,6 +1,3 @@
-puts "Hello, world!"
-puts "Running Shoes #{Shoes::VERSION}"
-
-Shoes.app :width => 12 do
+Shoes.app :width => 300, :height => 300 do
   banner "Hello, world!"
 end

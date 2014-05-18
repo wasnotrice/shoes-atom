@@ -3,7 +3,7 @@ class Shoes
     class App
       def initialize(dsl)
         @dsl = dsl
-        @gui = %x|
+        @real = %x|
           (function() {
             var gui = document.createElement('div');
             gui.classList.add('shoes-app');
@@ -12,49 +12,32 @@ class Shoes
           })()
         |
         @started = false
-        @on_ready = %x|
-          function () {
-            var app = this,
-              mainWindow = new BrowserWindow({width: 600, height: 500});
-
-            #{@browserWindow} = mainWindow;
-
-            app.windows.push(mainWindow);
-            mainWindow.loadUrl('file://' + __dirname + '/index.html');
-
-            mainWindow.on('closed', function() {
-              var windowIndex = app.windows.indexOf(mainWindow);
-              app.windows.splice(windowIndex, 1);
-              mainWindow = null;
-            });
-          }
-        |
-        %x|
-          var ipc = require('ipc');
-          ipc.send('shoes-app-created', #{@on_ready});
-          ipc.on('shoes-app-loaded', function() {
-            #{@started = true}
-          });
-        |
+        # Channel to renderer context
+        @ipc = `require('ipc');`
       end
 
-      attr_reader :app, :gui
+      attr_reader :app, :dsl, :real
 
       def started?
         @started
       end
 
       def open
+        `#{@ipc}.send('shoes-app-ready', #{app_index}, #{@dsl.width}, #{@dsl.height});`
+        @started = true
       end
 
       def width
-        @browserWindow.getSize()[0]
+        `#{@ipc}.send('get-window-width', #{app_index})`
       end
 
       def height
-        @browserWindow.getSize()[1]
+        `#{@ipc}.send('get-window-height', #{app_index})`
       end
 
+      def app_index
+        Shoes.apps.index(@dsl.app)
+      end
     end
   end
 end

@@ -19,7 +19,7 @@ app.on('window-all-closed', function() {
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  var mainWindow = new BrowserWindow({width: 800, height: 600});
+  var mainWindow = new BrowserWindow({width: 800, height: 600, title: 'Shoes Atom', show: false});
   windows.push(mainWindow);
 
   // and load the index.html of the app.
@@ -33,6 +33,15 @@ app.on('ready', function() {
   });
 });
 
-ipc.on('shoes-app-created', function(event, func) {
-  console.log(func);
+ipc.on('shoes-app-ready', function(event, index, width, height) {
+  windows[index].setSize(width, height);
+  windows[index].show();
+});
+
+ipc.on('get-window-width', function(event, index) {
+  windows[index].getSize()[0];
+});
+
+ipc.on('get-window-height', function(event, index) {
+  windows[index].getSize()[1];
 });
