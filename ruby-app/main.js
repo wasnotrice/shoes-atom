@@ -34,7 +34,9 @@ app.on('ready', function() {
 });
 
 ipc.on('shoes-app-ready', function(event, index, width, height) {
-  windows[index].setSize(width, height);
+  // Atom's height includes the window chrome, but Shoes's doesn't
+  var chromeHeight = 22;
+  windows[index].setSize(width, height + chromeHeight);
   windows[index].show();
 });
 
