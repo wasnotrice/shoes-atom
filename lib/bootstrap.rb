@@ -1,3 +1,4 @@
 require 'opal'
 require 'shoes'
-# require 'app'
+require 'shoes/atom/app'
+require 'shoes/atom/flow'

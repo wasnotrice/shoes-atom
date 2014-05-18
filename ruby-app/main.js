@@ -1,5 +1,6 @@
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
+var ipc = require('ipc');
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -30,4 +31,8 @@ app.on('ready', function() {
     windows.splice(index, 1);
     mainWindow = null;
   });
+});
+
+ipc.on('shoes-app-created', function(event, func) {
+  console.log(func);
 });
