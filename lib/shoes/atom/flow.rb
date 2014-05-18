@@ -6,14 +6,17 @@ class Shoes
         @parent = parent
         @app = parent.app
 
-        %x|
-          var flow = document.createElement('div');
-          flow.classList.add('shoes-flow');
-          #{@parent.gui}.appendChild(flow);
+        @real = %x|
+          (function() {
+            var flow = document.createElement('div');
+            flow.classList.add('shoes-flow');
+            #{@parent.gui}.appendChild(flow);
+            return flow;
+          })()
         |
       end
 
-      attr_reader :dsl, :parent, :app
+      attr_reader :dsl, :parent, :app, :real
     end
   end
 end
