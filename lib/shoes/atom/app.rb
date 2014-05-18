@@ -3,6 +3,14 @@ class Shoes
     class App
       def initialize(dsl)
         @dsl = dsl
+        @gui = %x|
+          (function() {
+            var gui = document.createElement('div');
+            gui.classList.add('shoes-app');
+            document.body.appendChild(gui);
+            return gui;
+          })()
+        |
         @started = false
         @on_ready = %x|
           function () {
@@ -30,7 +38,7 @@ class Shoes
         |
       end
 
-      attr_reader :app
+      attr_reader :app, :gui
 
       def started?
         @started

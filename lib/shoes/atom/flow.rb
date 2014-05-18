@@ -9,7 +9,6 @@ class Shoes
         %x|
           var flow = document.createElement('div');
           flow.classList.add('shoes-flow');
-          console.log(#{self});
           #{@parent.gui}.appendChild(flow);
         |
       end
