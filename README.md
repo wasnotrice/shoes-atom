@@ -15,6 +15,18 @@ generate C code from Ruby and hook into the rendering engine primitives, we are
 generating Javascript and HTML code from Ruby and using the engine's normal DOM
 rendering, only in a custom application shell.
 
+Here's a "Hello, world!" example.
+
+```ruby
+Shoes.app :width => 300, :height => 300 do
+  banner "Hello, world!"
+end
+```
+
+![shoes-atom](https://www.dropbox.com/s/3rrgeyachu1ofq2/Screenshot%202014-05-18%2022.17.14.png)
+![Shoes 4 (Swt)](https://www.dropbox.com/s/p6mf03qw45rhi80/Screenshot%202014-05-18%2022.19.16.png)
+![Shoes 3](https://www.dropbox.com/s/8zux0e1x9iljkse/Screenshot%202014-05-18%2022.19.46.png)
+
 ## Development status
 
 Proof-of-concept. You can pretty much just write a "Hello, world!" app.
