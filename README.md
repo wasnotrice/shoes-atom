@@ -23,13 +23,13 @@ Shoes.app :width => 300, :height => 300 do
 end
 ```
 
-![shoes-atom](https://www.dropbox.com/s/3rrgeyachu1ofq2/Screenshot%202014-05-18%2022.17.14.png)
-![Shoes 4 (Swt)](https://www.dropbox.com/s/p6mf03qw45rhi80/Screenshot%202014-05-18%2022.19.16.png)
-![Shoes 3](https://www.dropbox.com/s/8zux0e1x9iljkse/Screenshot%202014-05-18%2022.19.46.png)
+![shoes-atom](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/ccjx9fb2.png)
+![Shoes 4 (Swt)](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/ac9oif5m.png)
+![Shoes 3](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/0t66viy7.png)
 
 ## Development status
 
-Proof-of-concept. You can pretty much just write a "Hello, world!" app.
+Proof-of-concept. You can pretty much just write this "Hello, world!" app.
 Currently, this project also uses a patched version of Shoes. Mostly, we are
 just ignoring the filesystem for now, but this shouldn't be a limitation in the
 future.
