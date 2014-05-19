@@ -24,8 +24,8 @@ end
 ```
 
 ![shoes-atom](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/ccjx9fb2.png)
-![Shoes 4 (Swt)](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/ac9oif5m.png)
-![Shoes 3](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/0t66viy7.png)
+![Shoes 4 (Swt)](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/3hyful8z.png)
+![Shoes 3](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/njr4w2da.png)
 
 ## Development status
 
