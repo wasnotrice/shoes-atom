@@ -51,13 +51,12 @@ Clone Shoes as a sibling of your `shoes-atom` and check out the `opal` branch.
     cd shoes4
     git checkout 'opal'
 
-Build the project. This compiles Opal, Shoes, and a sample app. Build products
-get installed into the sample directory `ruby-app`.
+Build the project. This compiles Opal, Shoes, and an example app.
 
     cd ../shoes-atom
     rake
 
-Open the app with your downloaded Atom shell. For OS X,
+Shoes gets compiled to `dist/shoes.js`. The example app in `examples/hello/src` gets compiled to `example/hello/dist`.
 
     /Applications/Atom.app/Contents/MacOS/Atom ruby-app
 
