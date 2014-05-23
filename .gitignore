@@ -1,2 +1,2 @@
-ruby-app/shoes.js
-ruby-app/app.js
+dist
+examples/**/dist
