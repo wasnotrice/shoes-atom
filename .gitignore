@@ -1,3 +1,4 @@
 dist
 examples/**/dist
 Gemfile.lock
+.bundle

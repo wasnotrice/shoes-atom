@@ -1,5 +1,8 @@
 require 'opal'
 require 'rake/clean'
+require 'opal/rspec/rake_task'
+
+Opal::RSpec::RakeTask.new(:spec)
 
 DIST_DIR = 'dist'
 

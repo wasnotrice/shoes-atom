@@ -39,26 +39,22 @@ future.
 
 [Download atom-shell](https://github.com/atom/atom-shell/releases) and install it. On OS X, unzip the download and drag it to `/Applications`.
 
-Pick a directory and clone this repository.
+Clone this repository.
 
-    cd ~/code
-    git clone https://www.github.com/wasnotrice/shoes-atom
+    $ git clone https://www.github.com/wasnotrice/shoes-atom
+    $ cd shoes-atom
 
-Clone Shoes as a sibling of your `shoes-atom` and check out the `opal` branch.
+Install Shoes and friends.
 
-    cd ~/code
-    git clone https://www.github.com/wasnotrice/shoes4
-    cd shoes4
-    git checkout 'opal'
+    $ bundle install
 
 Build the project. This compiles Opal, Shoes, and an example app.
 
-    cd ../shoes-atom
-    rake
+    $ rake
 
-Shoes gets compiled to `dist/shoes.js`. The example app in `examples/hello/src` gets compiled to `examples/hello/dist`.
+Shoes gets compiled to `dist/shoes.js`. The example app in `examples/hello/src` gets compiled to `examples/hello/dist`. Open the example app with your Atom app. On OS X, that looks like this:
 
-    /Applications/Atom.app/Contents/MacOS/Atom ruby-app
+    $ /Applications/Atom.app/Contents/MacOS/Atom examples/hello/dist
 
 That's it!
 
