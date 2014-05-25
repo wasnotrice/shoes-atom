@@ -37,7 +37,7 @@ future.
 
 ## Getting started
 
-[Download atom-shell](https://github.com/atom/atom-shell/releases) and install it. On OS X, unzip the download and drag it to `/Applications`.
+0. [Download atom-shell](https://github.com/atom/atom-shell/releases) and install it. On OS X, unzip the download and drag it to `/Applications`.
 
 1. Clone this repository.
 
@@ -54,7 +54,7 @@ future.
 
     Shoes gets compiled to `dist/shoes.js`. The example app in `examples/hello/src` gets compiled to `examples/hello/dist`.
 
-4. Now, open the example app with your Atom app. On OS X, that looks like this:
+4. Open the example app with your Atom app. On OS X, that looks like this:
 
         $ /Applications/Atom.app/Contents/MacOS/Atom examples/hello/dist
 
