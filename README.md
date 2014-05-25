@@ -52,11 +52,13 @@ Build the project. This compiles Opal, Shoes, and an example app.
 
     $ rake
 
-Shoes gets compiled to `dist/shoes.js`. The example app in `examples/hello/src` gets compiled to `examples/hello/dist`. Open the example app with your Atom app. On OS X, that looks like this:
+Shoes gets compiled to `dist/shoes.js`. The example app in `examples/hello/src` gets compiled to `examples/hello/dist`.
+
+Now, open the example app with your Atom app. On OS X, that looks like this:
 
     $ /Applications/Atom.app/Contents/MacOS/Atom examples/hello/dist
 
-That's it!
+Congratulations. You're running a Shoes app :D
 
 ## Contributing
 
