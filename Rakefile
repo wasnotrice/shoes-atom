@@ -7,7 +7,7 @@ Opal::RSpec::RakeTask.new(:spec)
 DIST_DIR = 'dist'
 
 OPAL_JS = File.join DIST_DIR, 'opal.js'
-SHOES_JS = File.join DIST_DIR, 'shoes.js'
+SHOES_JS = File.join DIST_DIR, 'shoes-dsl.js'
 EXAMPLE_APPS = FileList['examples/*']
 
 SHOES_SOURCES = FileList['lib/**/*']
@@ -21,7 +21,7 @@ file SHOES_JS => [DIST_DIR, *SHOES_SOURCES] do
 
   env = Opal::Environment.new
   env.append_path 'lib'
-  env.use_gem 'shoes'
+  env.use_gem 'shoes-dsl'
 
   shoes = env['bootstrap']
   shoes.write_to SHOES_JS
