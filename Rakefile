@@ -18,7 +18,7 @@ file SHOES_JS => [DIST_DIR, *SHOES_SOURCES] do
 
   env = Opal::Environment.new
   env.append_path 'lib'
-  env.append_path '../shoes4/lib'
+  env.use_gem 'shoes'
 
   shoes = env['bootstrap']
   shoes.write_to SHOES_JS
