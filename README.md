@@ -1,9 +1,8 @@
 # shoes-atom
 
-A Javascript backend for [Shoes](https://www.github.com/shoes/shoes4) that uses
-the [Opal](http://opalrb.org/) Ruby to Javascript compiler and the
-[atom-shell](https://github.com/atom/atom-shell) cross-platform application
-shell.
+A Javascript backend for [Shoes](https://www.github.com/shoes/shoes4) that uses the [Opal](http://opalrb.org/) Ruby to Javascript compiler and the [atom-shell](https://github.com/atom/atom-shell) cross-platform application shell.
+
+## Background
 
 Shoes apps work like the web. The layout flows like HTML. When _why first started writing Hackety Hack, he even tried to render Shoes apps using Firefox's Gecko engine. Unfortunately, that didn't work out. Now, a few years later, we have a convergence of 3 projects:
 
@@ -24,6 +23,10 @@ end
 ![shoes-atom](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/ccjx9fb2.png)
 ![Shoes 4 (Swt)](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/3hyful8z.png)
 ![Shoes 3](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/njr4w2da.png)
+
+As an added bonus, if you just want to compile your Shoes app to a web page that any modern browser can render, you can do that, too! You lose a little functionality (for instance, you can't use the filesystem), but browsers are everywhere.
+
+![shoes-browser](https://dl.dropboxusercontent.com/spa/0dcvxe71jtnccsf/s6ir4d2z.png)
 
 ## Development status
 
@@ -47,11 +50,12 @@ Proof-of-concept. You can pretty much just write this "Hello, world!" app. Curre
 
         $ rake
 
-    Shoes gets compiled to `dist/shoes.js`. The example app in `examples/hello/src` gets compiled to `examples/hello/dist`.
+    This compiles two versions of Shoes: `dist/shoes-browser.js` and `dist/shoes-atom.js`, for running in a browser, and in atom-shell, respectively. The example app in `examples/hello/src` gets compiled to `examples/hello/browser` and `examples/hello/atom`.
 
-4. Open the example app with your Atom app. On OS X, that looks like this:
+4. Open the example app with your browser, or with your Atom app. On OS X, that looks like this:
 
-        $ /Applications/Atom.app/Contents/MacOS/Atom examples/hello/dist
+        $ open examples/hello/browser/index.html
+        $ /Applications/Atom.app/Contents/MacOS/Atom examples/hello/atom
 
 Congratulations. You're running a Shoes app :D
 
