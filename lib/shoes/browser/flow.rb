@@ -1,5 +1,5 @@
 class Shoes
-  module Atom
+  module Browser
     class Flow
       def initialize(dsl, parent)
         @dsl = dsl

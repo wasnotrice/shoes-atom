@@ -1,4 +1,6 @@
 dist
+examples/**/atom
+examples/**/browser
 examples/**/dist
 Gemfile.lock
 .bundle

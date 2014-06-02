@@ -1,5 +1,5 @@
 class Shoes
-  module Atom
+  module Browser
     class TextBlock
       def initialize(dsl)
         @dsl = dsl
