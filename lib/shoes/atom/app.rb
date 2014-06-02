@@ -14,29 +14,52 @@ class Shoes
         @started = false
         # Channel to renderer context
         @ipc = `require('ipc');`
+
+        init_subscriptions
       end
 
-      attr_reader :app, :dsl, :real
+      attr_reader :app, :dsl, :height, :real, :width
 
       def started?
         @started
       end
 
-      def open
-        `#{@ipc}.send('shoes-app-ready', #{app_index}, #{@dsl.width}, #{@dsl.height});`
-        @started = true
-      end
-
       def width
-        `#{@ipc}.send('get-window-width', #{app_index})`
+        publish 'get-window-size', app_index
+        @width
       end
 
       def height
-        `#{@ipc}.send('get-window-height', #{app_index})`
+        publish 'get-window-size', app_index
+        @height
       end
 
+      def open
+        publish 'shoes-app-ready', app_index, @dsl.width, @dsl.height
+        @started = true
+      end
+
+      def publish(message, *args)
+        # Hack around unsupported splat expansion
+        one, two, three, four, five, six = args[0], args[1], args[2], args[3], args[4], args[5]
+        `#{@ipc}.send(#{message}, #{one}, #{two}, #{three}, #{four}, #{five}, #{six});`
+      end
+
+      private
       def app_index
         Shoes.apps.index(@dsl.app)
+      end
+
+      def init_subscriptions
+        # @ipc.on 'window-size' do |size|
+        #   @width, @height = size[0], size[1]
+        # end
+        %x|
+          #{@ipc}.on('window-size', function(size) {
+            #{@width} = size[0];
+            #{@height} = size[1];
+          });
+        |
       end
     end
   end

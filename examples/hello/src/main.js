@@ -40,10 +40,8 @@ ipc.on('shoes-app-ready', function(event, index, width, height) {
   windows[index].show();
 });
 
-ipc.on('get-window-width', function(event, index) {
-  windows[index].getSize()[0];
+ipc.on('get-window-size', function(event, index) {
+  var size = windows[index].getSize();
+  ipc.send('window-size', size);
 });
 
-ipc.on('get-window-height', function(event, index) {
-  windows[index].getSize()[1];
-});
