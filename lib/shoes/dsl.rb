@@ -6,6 +6,8 @@ require 'delegate'
 require 'encoding'
 require 'fileutils'
 require 'forwardable'
+# Opal error: NameError: uninitialized constant Shoes::Math
+require 'math'
 require 'pathname'
 # Opal error: Can't find file "tmpdir"
 # require 'tmpdir'
@@ -13,11 +15,7 @@ require 'pathname'
 require 'shoes/common/registration'
 
 class Shoes
-  if RUBY_ENGINE == 'opal'
-    PI = 3.141592658
-  else
-    PI = Math::PI
-  end
+  PI = Math::PI
   TWO_PI              = 2 * PI
   HALF_PI             = 0.5 * PI
   if RUBY_ENGINE == 'opal'
