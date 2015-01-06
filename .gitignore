@@ -1,4 +1,5 @@
-dist
+build
+vendor
 examples/**/atom
 examples/**/browser
 examples/**/dist
