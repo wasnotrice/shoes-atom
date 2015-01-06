@@ -1,37 +1,35 @@
-require 'opal'
 require 'rake/clean'
-require 'opal/rspec/rake_task'
+require_relative 'tasks/rspec'
 
-Opal::RSpec::RakeTask.new(:spec)
+BUILD_DIR = 'build'
 
-DIST_DIR = 'dist'
-
-OPAL_JS = File.join DIST_DIR, 'opal.js'
+OPAL_JS = File.join BUILD_DIR, 'opal.js'
 BACKENDS = ['atom', 'browser']
-SHOES_JS = BACKENDS.map {|backend| File.join DIST_DIR, "shoes-#{backend}.js" }
+SHOES_JS = BACKENDS.map {|backend| File.join BUILD_DIR, "shoes-#{backend}.js" }
 EXAMPLE_APPS = FileList['examples/*']
 
 SHOES_SOURCES = FileList['lib/**/*']
 
-CLOBBER.include FileList[DIST_DIR]
+CLOBBER.include FileList[BUILD_DIR]
 
-directory DIST_DIR
+directory BUILD_DIR
 
 BACKENDS.zip(SHOES_JS).each do |backend, shoes_js|
-  file shoes_js => [DIST_DIR, *SHOES_SOURCES] do
+  file shoes_js => [BUILD_DIR, *SHOES_SOURCES] do
     Opal::Processor.dynamic_require_severity = :warning
 
-    env = Opal::Environment.new
+    env = Sprockets::Environment.new
     env.append_path 'lib'
-    env.use_gem 'shoes-dsl'
+    Opal.use_gem 'shoes-core'
+    Opal.paths.each { |path| env.append_path path }
 
     shoes = env["bootstrap/#{backend}"]
     shoes.write_to shoes_js
   end
 end
 
-file OPAL_JS => [DIST_DIR] do
-  env = Opal::Environment.new
+file OPAL_JS => [BUILD_DIR] do
+  env = Sprockets::Environment.new
   File.open(OPAL_JS, 'w+') do |out|
     out << env["opal"].to_s
   end
@@ -91,5 +89,6 @@ namespace :build do
   task :examples
 end
 
-task :build => ['build:shoes', 'build:examples']
-task :default => ['build']
+task 'build:all' => ['build:shoes', 'build:examples']
+task :default => ['build:all']
+task 'spec:browser' => 'build:shoes'

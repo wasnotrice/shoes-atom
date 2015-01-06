@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'opal', '~>0.6.0'
-gem 'shoes-dsl', git: 'git@github.com:wasnotrice/shoes4.git', branch: 'opal'
+gem 'opal', git: 'git@github.com:opal/opal.git', branch: 'master'
+#gem 'shoes-dsl', git: 'git@github.com:wasnotrice/shoes4.git', branch: 'opal'
+gem 'shoes-core', path: './vendor/shoes-core'
 gem 'rake'
 
 group :development, :test do
-  gem 'rspec', '>2.0'
-  gem 'opal-rspec', '~>0.3.0.beta'
+  gem 'rspec', '~>3'
+  gem 'opal-rspec', git: 'git@github.com:opal/opal-rspec.git', branch: 'master'
+  gem 'rspec-its', '~>1.1.0'
+
+  gem 'webmock'
 end
