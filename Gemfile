@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 # All 3 of these declarations for 'shoes-core' fail. See
 # tasks/workaround_for_using_prerelease_gems.rb
-# gem 'shoes-core', git: 'git@github.com:shoes/shoes4.git', branch: 'master'
+# The git version also doesn't work because shoes-core isn't in its own repository
+# gem 'shoes-core', git: 'git@github.com:shoes/shoes4.git/shoes-core', branch: 'master'
 # gem 'shoes-core', path: './vendor/shoes-core'
 gem 'shoes-core', '~> 4.0.0.pre', path: './vendor/shoes-core-4.0.0.pre2'
 
