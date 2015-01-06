@@ -2,12 +2,8 @@
 # In shoes4, this happens to be required by logger.rb. If we don't load that
 # file, we don't get 'delegate'
 require 'delegate'
-# Opal error: NameError: uninitialized constant Shoes::Image::Encoding
-require 'encoding'
 require 'fileutils'
 require 'forwardable'
-# Opal error: NameError: uninitialized constant Shoes::Math
-require 'math'
 require 'pathname'
 # Opal error: Can't find file "tmpdir"
 # require 'tmpdir'
