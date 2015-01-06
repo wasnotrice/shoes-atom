@@ -1,6 +1,6 @@
 require 'opal'
 require 'native'
-require 'shoes'
+require 'shoes/core'
 require 'shoes/browser/app'
 require 'shoes/browser/flow'
 require 'shoes/browser/keypress'
