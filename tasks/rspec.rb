@@ -1,4 +1,6 @@
 require 'opal'
+require_relative 'workaround_for_using_prerelease_gems'
+require_relative 'workaround_for_binary_encoding'
 
 Opal::Processor.dynamic_require_severity = :warning
 Opal.append_path File.expand_path('../../build', __FILE__)

@@ -1,8 +1,12 @@
 source 'https://rubygems.org'
 
+# All 3 of these declarations for 'shoes-core' fail. See
+# tasks/workaround_for_using_prerelease_gems.rb
+# gem 'shoes-core', git: 'git@github.com:shoes/shoes4.git', branch: 'master'
+# gem 'shoes-core', path: './vendor/shoes-core'
+gem 'shoes-core', '~> 4.0.0.pre', path: './vendor/shoes-core-4.0.0.pre2'
+
 gem 'opal', git: 'git@github.com:opal/opal.git', branch: 'master'
-#gem 'shoes-dsl', git: 'git@github.com:wasnotrice/shoes4.git', branch: 'opal'
-gem 'shoes-core', path: './vendor/shoes-core'
 gem 'rake'
 
 group :development, :test do
