@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # The git version also doesn't work because shoes-core isn't in its own repository
 # gem 'shoes-core', git: 'git@github.com:shoes/shoes4.git/shoes-core', branch: 'master'
 # gem 'shoes-core', path: './vendor/shoes-core'
-gem 'shoes-core', '~> 4.0.0.pre', path: './vendor/shoes-core-4.0.0.pre2'
+gem 'shoes-core', '~> 4.0.0.pre', path: './vendor/shoes-core-4.0.0.pre3'
 
 gem 'opal', git: 'git@github.com:opal/opal.git', branch: 'master'
 gem 'rake'
