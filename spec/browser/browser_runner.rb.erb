@@ -1,0 +1,14 @@
+# Modeled after opal-rspec's sprockets_runner
+
+require 'opal'
+require 'opal-rspec'
+
+<% Dir.glob('spec/{browser,shoes}/**/*_spec.{rb,opal}').each do |s| %>
+require <%= s.sub(/^spec\//, '').sub(/\.(rb|opal)$/, '').inspect %>
+<% end %>
+
+RSpec.configure do |config|
+  config.filter_run_excluding :no_opal, :no_browser
+end
+
+Opal::RSpec::Runner.autorun

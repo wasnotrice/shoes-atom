@@ -13,11 +13,8 @@ Opal.use_gem 'shoes-core'
 Opal.use_gem 'rspec-its'
 #Opal.use_gem 'webmock'
 
-Opal::RSpec::RakeTask.new('spec:dsl') do |server|
-  server.debug = true
-end
-
 Opal::RSpec::RakeTask.new('spec:browser') do |server|
-  server.debug = true
+  server.debug = false
+  server.main = 'browser/browser_runner'
   server.index_path = File.expand_path('../../spec/browser/index.erb', __FILE__)
 end

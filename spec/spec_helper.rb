@@ -11,10 +11,6 @@
 # shared_examples = File.expand_path('../shoes/shared_examples/**/*.rb', __FILE__)
 # Dir[shared_examples].each { |f| require f }
 
-RSpec.configure do |config|
-  config.filter_run_excluding :opal => false
-end
-
 require 'rspec/its'
 ENV['SHOES_BACKEND'] = 'mock'
 require 'shoes/mock'
@@ -59,5 +55,5 @@ require 'shoes/mock'
 # require 'shoes/shared_examples/slot'
 # require 'shoes/shared_examples/state'
 # require 'shoes/shared_examples/style'
-# 
-# require 'shoes/helpers/inspect_helpers'
+
+require 'shoes/helpers/inspect_helpers'
