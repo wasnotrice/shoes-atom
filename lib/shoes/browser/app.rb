@@ -28,6 +28,10 @@ class Shoes
         @height
       end
 
+      def gutter
+        16
+      end
+
       def open
         @started = true
       end
