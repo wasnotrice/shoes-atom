@@ -3,8 +3,16 @@
 require 'opal'
 require 'opal-rspec'
 
-<% Dir.glob('spec/{browser,shoes}/**/*_spec.{rb,opal}').each do |s| %>
-require <%= s.sub(/^spec\//, '').sub(/\.(rb|opal)$/, '').inspect %>
+# Enumerate the specs we want to run, so we can turn them on/off easily.
+# To run all of the specs, you'd replace this with
+#     Dir.glob('spec/{browser,shoes}/**/*_spec.{rb,opal}')
+<%
+  active_specs = [
+    'spec/shoes/app_spec.rb',
+  ]
+%>
+<% active_specs.each do |path| %>
+require <%= path.sub(/^spec\//, '').sub(/\.(rb|opal)$/, '').inspect %>
 <% end %>
 
 RSpec.configure do |config|
