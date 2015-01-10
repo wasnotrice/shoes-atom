@@ -8,6 +8,7 @@ Opal::Processor.dynamic_require_severity = :warning
 Opal.append_path File.expand_path('../../build', __FILE__)
 Opal.append_path File.expand_path('../../lib', __FILE__)
 Opal.append_path File.expand_path('../../spec', __FILE__)
+Opal.append_path File.expand_path('../../spec/shoes-core', __FILE__)
 Opal.append_path File.expand_path('../../vendor', __FILE__)
 Opal.use_gem 'shoes-core'
 Opal.use_gem 'rspec-its'
