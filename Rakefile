@@ -1,5 +1,6 @@
 require 'rake/clean'
 require_relative 'tasks/rspec'
+require_relative 'tasks/find_tagged_specs'
 
 BUILD_DIR = 'build'
 
