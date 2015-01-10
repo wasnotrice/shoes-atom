@@ -228,7 +228,7 @@ describe Shoes::App do
     end
   end
 
-  describe 'fullscreen' do
+  describe 'fullscreen', :no_browser do
     describe 'defaults' do
       it 'is not fullscreen' do
         expect(app).not_to be_fullscreen
