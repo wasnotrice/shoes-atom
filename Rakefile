@@ -1,12 +1,14 @@
 require 'rake/clean'
 require_relative 'tasks/rspec'
 require_relative 'tasks/find_tagged_specs'
+require_relative 'tasks/sample'
 
 BUILD_DIR = 'build'
 
 OPAL_JS = File.join BUILD_DIR, 'opal.js'
 BACKENDS = ['atom', 'browser']
 EXAMPLE_APPS = FileList['examples/*.rb']
+SAMPLE_APPS = samples_from_file("README")
 
 SHOES_SOURCES = FileList['lib/**/*']
 
@@ -40,11 +42,12 @@ end
 
 def create_build_tasks_for_app(src, backend, options = {})
   name = src.pathmap("%n")
+  src_dir = src.pathmap("%d")
   dist = File.join(BUILD_DIR, name, backend)
   script = File.join(dist, "app.js")
   shoes = File.join(dist, "shoes.js")
   shoes_js = File.join(BUILD_DIR, "shoes-#{backend}.js")
-  task_name = "build:examples:#{name}"
+  task_name = "build:#{src_dir}:#{name}"
 
   directory dist
 
@@ -81,7 +84,7 @@ def create_build_tasks_for_app(src, backend, options = {})
   end
 end
 
-EXAMPLE_APPS.each do |src|
+EXAMPLE_APPS.concat(SAMPLE_APPS).each do |src|
   BACKENDS.each do |backend|
     create_build_tasks_for_app src, backend, dependency_of: ['build:examples']
   end

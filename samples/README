@@ -1,0 +1,100 @@
+# Here's a list of the samples in this directory that work. Please
+# add to this list as you implement features!
+#
+# NOTE: Comment out anything that isn't a filename, so we can execute this list.
+#       See the `rake samples` task
+
+# simple-anim-shapes.rb
+# simple-animate.rb
+# simple-arc.rb  Pending on #423
+# simple-bounce.rb
+# simple-brightness-transitions.rb
+# simple-button-animate.rb
+# simple-calc.rb
+# simple-calc-2.rb
+# simple-color-selector.rb
+# simple-color-transitions.rb
+# simple-curve.rb
+# simple-dialogs.rb
+# simple-dialogs-outside.rb
+# simple-displace.rb
+# simple-downloader.rb
+# simple-draw.rb
+# simple-editor.rb
+# simple-face.rb
+# simple-flow-wrap.rb
+# simple-font.rb
+# simple-fullscreen.rb
+# simple-guess-game.rb
+# simple-keypress.rb
+# simple-manual.rb
+# simple-mouse-follow.rb
+# simple-move.rb
+# simple-oval.rb
+# simple-sample-executor.rb
+# simple-shoes-intro.rb
+# simple-slide.rb
+# simple-sound.rb
+# simple-stripes.rb
+# simple-timer.rb
+# simple-tictactoe.rb
+# simple-visibility.rb
+
+# good-arc.rb
+# good-clock.rb
+# good-follow.rb
+# good-potato-chopping.rb
+# good-reminder.rb
+# good-vjot.rb
+
+# expert-definr.rb
+# expert-funnies.rb
+# expert-game-of-life-adjusted.rb
+# expert-irb-adjusted.rb
+# expert-minesweeper-adjusted.rb
+# expert-othello-adjusted.rb
+# expert-pong.rb
+# expert-snake.rb
+# expert-tankspank.rb
+# expert-tetris.rb
+
+# examples from the nobody knows shoes book
+# nks_booklist.rb
+# nks_breadsticks.rb
+# nks_dancing_circle.rb
+# nks_dictionary.rb
+# nks_edit_box.rb
+# nks_edit_line.rb
+# nks_notes.rb
+# nks_poem.rb
+# nks_self.rb
+nks_text_sizes.rb
+# nks_trurl.rb
+
+# class-book-adjusted.rb
+
+# sample1.rb
+# sample2.rb
+# sample3.rb
+# sample4.rb
+# sample6.rb
+# sample7.rb
+# sample8.rb
+# sample9.rb
+# sample12.rb
+# sample13.rb
+# sample14.rb
+# sample15.rb
+# sample16.rb
+# sample17.rb
+# sample21.rb
+# sample23.rb
+# sample24.rb
+# sample27.rb
+# sample31.rb
+# sample34.rb
+# sample35.rb
+# sample37.rb
+# sample42.rb
+# sample45.rb
+# sample56.rb
