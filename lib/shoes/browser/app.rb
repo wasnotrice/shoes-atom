@@ -3,14 +3,19 @@ class Shoes
     class App
       def initialize(dsl)
         @dsl = dsl
-        @real = %x|
+        @real = %x{
           (function() {
             var gui = document.createElement('div');
             gui.classList.add('shoes-app');
+
+            var appCanvas = document.createElement('canvas');
+            appCanvas.classList.add('shoes-app-canvas');
+            gui.appendChild(appCanvas);
+
             document.body.appendChild(gui);
             return gui;
           })()
-        |
+        }
         @started = false
       end
 
