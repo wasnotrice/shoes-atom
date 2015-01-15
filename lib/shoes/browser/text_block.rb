@@ -9,19 +9,33 @@ class Shoes
       attr_reader :dsl, :app
 
       def replace(*texts)
-        text = texts.join(" ")
+        text = texts.join(" ") + " "
         @real = %x|
           (function() {
             var span = document.createElement('span');
-            span.classList.add('shoes-banner');
+            span.classList.add(#{css_class_name});
             span.innerHTML = #{text};
             #{@dsl.parent.gui.real}.appendChild(span);
             return span;
           })()
         |
       end
+
+      def css_class_name
+        "shoes-#{simple_class_name}"
+      end
+
+      def simple_class_name
+        self.class.name.split('::').last.downcase
+      end
     end
 
     class Banner < TextBlock; end
+    class Title < TextBlock; end
+    class Subtitle < TextBlock; end
+    class Tagline < TextBlock; end
+    class Caption < TextBlock; end
+    class Para < TextBlock; end
+    class Inscription < TextBlock; end
   end
 end
