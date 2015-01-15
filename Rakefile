@@ -7,7 +7,7 @@ BUILD_DIR = 'build'
 OPAL_JS = File.join BUILD_DIR, 'opal.js'
 BACKENDS = ['atom', 'browser']
 SHOES_JS = BACKENDS.map {|backend| File.join BUILD_DIR, "shoes-#{backend}.js" }
-EXAMPLE_APPS = FileList['examples/*']
+EXAMPLE_APPS = FileList['examples/*.rb']
 
 SHOES_SOURCES = FileList['lib/**/*']
 
@@ -36,10 +36,10 @@ file OPAL_JS => [BUILD_DIR] do
   end
 end
 
-EXAMPLE_APPS.each do |example|
-  src = example.pathmap("%p/src")
+EXAMPLE_APPS.each do |example_app_src|
+  example = example_app_src.pathmap("%n")
   BACKENDS.zip(SHOES_JS).each do |backend, shoes_js|
-    dist = example.pathmap("%p/#{backend}")
+    dist = example.pathmap("#{BUILD_DIR}/%X/#{backend}")
     example_app = dist.pathmap("%p/app.js")
     example_shoes = dist.pathmap("%p/shoes.js")
     example_name = example.pathmap("%f")
@@ -63,7 +63,7 @@ EXAMPLE_APPS.each do |example|
       task example_task => target_file
     end
 
-    file example_app => [dist, example_app.pathmap("%{#{backend},src}X.rb")] do |t|
+    file example_app => [dist, example_app_src] do |t|
       File.open(t.name, 'w+') do |out|
         out << Opal.compile(File.read t.prerequisites[1])
       end
