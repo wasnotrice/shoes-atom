@@ -48,12 +48,13 @@ EXAMPLE_APPS.each do |example|
     directory dist
     CLOBBER.include dist
 
-    to_copy = FileList.new("#{src}/**/*") do |files|
-      files.exclude("#{src}/app.rb")
+    to_copy = FileList.new("skeleton/**/*") do |files|
+      files.exclude("skeleton/app.rb")
+      files.exclude("skeleton/main.js") if backend == 'browser'
     end
 
     to_copy.each do |source_file|
-      target_file = source_file.pathmap("%{src,#{backend}}p")
+      target_file = source_file.pathmap("%{skeleton,#{dist}}p")
 
       file target_file => [dist, source_file] do |t|
         cp source_file, target_file
