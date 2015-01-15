@@ -6,3 +6,5 @@
 .shoes-caption { font-size: 14px; }
 .shoes-para { font-size: 12px; }
 .shoes-inscription { font-size: 10px; }
+
+.shoes-stack .shoes-element { display: block; }

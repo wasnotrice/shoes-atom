@@ -14,6 +14,7 @@ class Shoes
           (function() {
             var span = document.createElement('span');
             span.classList.add(#{css_class_name});
+            span.classList.add('shoes-element');
             span.innerHTML = #{text};
             #{@dsl.parent.gui.real}.appendChild(span);
             return span;
