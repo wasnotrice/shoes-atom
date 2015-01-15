@@ -38,7 +38,7 @@ file OPAL_JS => [BUILD_DIR] do
   end
 end
 
-def build_app(src, backend)
+def create_build_tasks_for_app(src, backend, options = {})
   name = src.pathmap("%n")
   dist = File.join(BUILD_DIR, name, backend)
   script = File.join(dist, "app.js")
@@ -76,12 +76,14 @@ def build_app(src, backend)
   desc "Build the '#{name}' app"
   task task_name => [dist, script, shoes]
 
-  task 'build:examples' => task_name
+  options.fetch(:dependency_of, []).each do |task_depending_on_this|
+    task task_depending_on_this => task_name
+  end
 end
 
 EXAMPLE_APPS.each do |src|
   BACKENDS.each do |backend|
-    build_app src, backend
+    create_build_tasks_for_app src, backend, dependency_of: ['build:examples']
   end
 end
 
