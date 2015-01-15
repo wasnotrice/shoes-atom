@@ -273,7 +273,6 @@ describe Shoes::App do
     end
 
     it 'has initial contents' do
-      puts subject.contents.inspect
       expect(subject.contents).to_not be_empty
     end
 
@@ -311,6 +310,7 @@ describe Shoes::App do
             my_parent = parent
           end
         end
+        expect(my_parent).to be_kind_of(Shoes::Slot)
         expect(my_parent).to eq app.instance_variable_get(:@__app__).top_slot
       end
     end
@@ -327,6 +327,7 @@ describe Shoes::App do
           end
         end
 
+        expect(my_parent).to be_kind_of(Shoes::Slot)
         expect(my_parent).to eq my_stack
       end
     end
