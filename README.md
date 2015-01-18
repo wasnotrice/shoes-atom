@@ -30,7 +30,7 @@ As an added bonus, if you just want to compile your Shoes app to a web page that
 
 ## Development status
 
-Proof-of-concept. You can pretty much just write this "Hello, world!" app. Currently, this project also uses a patched version of Shoes. Mostly, we are just ignoring the filesystem for now, but this shouldn't be a limitation in the future.
+Proof-of-concept. You can pretty much just write this "Hello, world!" app. Currently, this project tracks the HEAD version of Shoes 4, and includes minor monkeypatches to make things work nicely. Mostly, we are just ignoring the filesystem for now, but this shouldn't be a limitation in the future, except for the browser.
 
 
 ## Getting started
@@ -39,25 +39,87 @@ Proof-of-concept. You can pretty much just write this "Hello, world!" app. Curre
 
 1. Clone this repository.
 
-        $ git clone https://www.github.com/wasnotrice/shoes-atom
+        $ git clone https://www.github.com/wasnotrice/shoes-atom.git
         $ cd shoes-atom
 
-2. Install Shoes and friends.
+2. Create a local copy of Shoes 4. This step is necessary temporarily to work around [an issue with prerelease versions of gems](https://github.com/rubygems/rubygems/issues/988).
+
+        $ git clone https://www.github.com/shoes/shoes4.git
+        $ cd shoes4
+        $ rake build:shoes-core
+        $ cd ../shoes-atom/vendor
+        $ gem unpack ../shoes4/shoes-core/pkg/shoes-core-4.0.0.pre3.gem
+        $ cd ..
+
+3. Install other dependencies.
 
         $ bundle install
 
-3. Build the project. This compiles Opal, Shoes, and an example app.
+4. Build the project. This compiles Opal, Shoes, and an example app.
 
         $ rake
 
-    This compiles two versions of Shoes: `dist/shoes-browser.js` and `dist/shoes-atom.js`, for running in a browser, and in atom-shell, respectively. The example app in `examples/hello/src` gets compiled to `examples/hello/browser` and `examples/hello/atom`.
+    This compiles two versions of Shoes: `dist/shoes-browser.js` and `dist/shoes-atom.js`, for running in a browser, and in atom-shell, respectively. The example app in `examples/hello.rb` gets compiled to `dist/hello/browser` and `dist/hello/atom`.
 
-4. Open the example app with your browser, or with your Atom app. On OS X, that looks like this:
+5. Open the example app with your browser, or with your Atom app. On OS X, that looks like this:
 
-        $ open examples/hello/browser/index.html
-        $ /Applications/Atom.app/Contents/MacOS/Atom examples/hello/atom
+        $ open dist/hello/browser/index.html
+        $ /Applications/Atom.app/Contents/MacOS/Atom dist/hello/atom
 
 Congratulations. You're running a Shoes app :D
+
+
+## Tour of the project
+
+The goal for this project is to provide two backends for Shoes apps: a `browser` backend and an `atom` backend. The browser backend will implement as many Shoes features as possible, but there are some that will not be possible because of the limitations of the browser environment (e.g. reading and writing to arbitrary files). The atom backend will extend the browser backend. Since this backend will run inside an atom shell, it will not be limited by the browser environment. The strategy is to implement as much as possible in the browser backend, and reuse browser code in the atom backend.
+
+
+### The backends
+
+The `lib` directory contains the bulk of the code:
+
+- `lib/bootstrap` contains files for bootstrapping the opal environment
+- `lib/shoes/core` contains monkeypatches to Shoes 4 so it can run on opal
+- `lib/shoes/browser` contains the browser backend
+- `lib/shoes/atom` contains the extensions to the browser backend for running in an atom shell
+
+
+### Specs
+
+This repository contain a copy of the `shoes-core` specs. Eventually, these specs shoudl run unmodified for the atom backend, and with only minimal exclusions for the browser backend. There will be two spec runners:
+
+- `spec/browser/browser_runner.erb/rb` runs shoes-core specs with the browser backend, and also specs for the browser backend itself
+- `spec/atom/atom_runner.erb.rb` (doesn't exist yet) will run shoes-core specs with the atom backend, and also specs for the atom backend (which should include most if not all of the specs for the browser backend)
+
+To add specs to the browser suite, add the file to the runner, like this:
+
+
+
+To mark specs as not working with the browser backend, tag them with `:no_browser`, like this:
+
+
+Run specs like this:
+
+    $ rake spec:browser
+
+_**Note:** you may have to use `bundle exec rake spec:browser`, depending on your setup_
+
+
+### Samples
+
+This repository includes a copy of the Shoes 4 samples. Ultimately, all of the samples should run with both the browser and the atom backends. The `samples/README.md` file contains a list of working samples. To mark one as working, uncomment it in this file.
+
+There are lots of rake tasks for running samples, taken from Shoes 4:
+
+```
+rake samples:bad                   # Run all non-working samples in random order
+rake samples:bad_list              # Create list of non-working samples
+rake samples:good[start_with]      # Run all working samples in alphabetical order
+rake samples:random                # Run all working samples in random order
+rake samples:subset[filename]      # Run all samples listed in samples/filename
+```
+
+
 
 ## Contributing
 
