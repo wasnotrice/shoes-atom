@@ -92,7 +92,7 @@ There isn't yet a great way to compile an app in some arbitrary location. Howeve
 
     $ rake build:examples
   
-Now your app will be built to `build/my_app/browser` and `build/my_app/atom`. Open them just like an example app. Open them like this:
+Now your app will be built to `build/my_app/browser` and `build/my_app/atom`. Open them like this:
 
         $ open build/my_app/browser/index.html
         $ /Applications/Atom.app/Contents/MacOS/Atom build/my_app/atom
