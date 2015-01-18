@@ -93,10 +93,32 @@ This repository contain a copy of the `shoes-core` specs. Eventually, these spec
 
 To add specs to the browser suite, add the file to the runner, like this:
 
+```ruby
+# Enumerate the specs we want to run, so we can turn them on/off easily.
+# These paths are relative to the load paths set in our spec task.
+# To run all of the specs, you'd replace this with
+#     Dir.glob('spec/{browser,shoes}/**/*_spec.{rb,opal}')
+<%
+  active_specs = [
+    # Add more specs to this list :)
+    'shoes/app_spec.rb',
+  ]
+%>
+```
 
+To mark specs as not working with the browser backend, tag groups or examples with `:no_browser`, like this:
 
-To mark specs as not working with the browser backend, tag them with `:no_browser`, like this:
+```ruby
+describe 'fullscreen', :no_browser do
+  # ...
+end
+```
 
+```ruby
+it "sets width", :no_browser do
+  # ...
+end
+```
 
 Run specs like this:
 
