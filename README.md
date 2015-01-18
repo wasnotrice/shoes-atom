@@ -1,6 +1,6 @@
 # shoes-atom
 
-A Javascript backend for [Shoes](https://www.github.com/shoes/shoes4) that uses the [Opal](http://opalrb.org/) Ruby to Javascript compiler and the [atom-shell](https://github.com/atom/atom-shell) cross-platform application shell.
+A pair of Javascript backends for [Shoes](https://www.github.com/shoes/shoes4) that use the [Opal](http://opalrb.org/) Ruby to Javascript compiler and the [atom-shell](https://github.com/atom/atom-shell) cross-platform application shell for running Shoes apps as desktop applications.
 
 ## Background
 
