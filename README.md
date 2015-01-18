@@ -129,7 +129,13 @@ _**Note:** you may have to use `bundle exec rake spec:browser`, depending on you
 
 ### Samples
 
-This repository includes a copy of the Shoes 4 samples. Ultimately, all of the samples should run with both the browser and the atom backends. The `samples/README.md` file contains a list of working samples. To mark one as working, uncomment it in this file.
+This repository includes a copy of the Shoes 4 samples. Ultimately, all of the samples should run with both the browser and the atom backends. The `samples/README` file contains a list of working samples. To mark one as working, uncomment it in this file, like this:
+
+```
+# nks_self.rb
+nks_text_sizes.rb
+# nks_trurl.rb
+```
 
 There are lots of rake tasks for running samples, taken from Shoes 4:
 
