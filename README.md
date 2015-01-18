@@ -59,12 +59,12 @@ Proof-of-concept. You can pretty much just write this "Hello, world!" app. Curre
 
         $ rake
 
-    This compiles two versions of Shoes: `dist/shoes-browser.js` and `dist/shoes-atom.js`, for running in a browser, and in atom-shell, respectively. The example app in `examples/hello.rb` gets compiled to `dist/hello/browser` and `dist/hello/atom`.
+    This compiles two versions of Shoes: `dist/shoes-browser.js` and `dist/shoes-atom.js`, for running in a browser, and in atom-shell, respectively. The example app in `examples/hello.rb` gets compiled to `build/hello/browser` and `build/hello/atom`.
 
 5. Open the example app with your browser, or with your Atom app. On OS X, that looks like this:
 
-        $ open dist/hello/browser/index.html
-        $ /Applications/Atom.app/Contents/MacOS/Atom dist/hello/atom
+        $ open build/hello/browser/index.html
+        $ /Applications/Atom.app/Contents/MacOS/Atom build/hello/atom
 
 Congratulations. You're running a Shoes app :D
 
@@ -82,6 +82,21 @@ The `lib` directory contains the bulk of the code:
 - `lib/shoes/core` contains monkeypatches to Shoes 4 so it can run on opal
 - `lib/shoes/browser` contains the browser backend
 - `lib/shoes/atom` contains the extensions to the browser backend for running in an atom shell
+
+There are a few auxiliary files that need to exist in order for apps to run using the browser and atom backends. You'll find these in `skeleton`.
+
+
+### Compiling an app
+
+There isn't yet a great way to compile an app in some arbitrary location. However, there is a rake task for building all of the example apps, so you can drop an app `my_app.rb` into the `examples` directory and run
+
+    $ rake build:examples
+  
+Now your app will be built to `build/my_app/browser` and `build/my_app/atom`. Open them just like an example app. Open them like this:
+
+        $ open build/my_app/browser/index.html
+        $ /Applications/Atom.app/Contents/MacOS/Atom build/my_app/atom
+
 
 
 ### Specs
