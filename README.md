@@ -162,6 +162,10 @@ rake samples:random                # Run all working samples in random order
 rake samples:subset[filename]      # Run all samples listed in samples/filename
 ```
 
+When you build samples and examples, the build directory will contain an index.html file with links to all of the browser versions of the build samples and examples.
+
+    $ open build/index.html
+
 
 
 ## Contributing

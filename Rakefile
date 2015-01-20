@@ -86,7 +86,7 @@ end
 
 EXAMPLE_APPS.concat(SAMPLE_APPS).each do |src|
   BACKENDS.each do |backend|
-    create_build_tasks_for_app src, backend, dependency_of: ['build:examples']
+    create_build_tasks_for_app src, backend, dependency_of: ['build:examples', 'build:index']
   end
 end
 
@@ -98,7 +98,20 @@ namespace :build do
   task :opal => OPAL_JS
 
   desc "Build examples"
-  task :examples
+  task :examples => :index
+
+  task :index do
+    contents = "<html><head><title>Examples</title></head><body><h1>Examples</h1><ul>"
+    Pathname.new(BUILD_DIR).children.each do |child|
+      if child.directory? && child.children.any? { |path| path.directory? && path.basename.to_s == 'browser' }
+        contents << %Q{<li><a href="./#{child.basename}/browser/index.html">#{child.basename}<a></li>}
+      end
+    end
+    contents << "</ul></body></html>"
+    File.open(File.join(BUILD_DIR, "index.html"), 'w') do |f|
+      f.write contents
+    end
+  end
 end
 
 task 'build:all' => ['build:shoes', 'build:examples']
