@@ -1,4 +1,5 @@
-.shoes-app { font-family: Arial, sans-serif; }
+body { margin: 0; padding: 0; }
+.shoes-app { font-family: Arial, sans-serif; position: relative; }
 .shoes-banner { font-size: 48px; }
 .shoes-title { font-size: 34px; }
 .shoes-subtitle { font-size: 26px; }
@@ -6,5 +7,7 @@
 .shoes-caption { font-size: 14px; }
 .shoes-para { font-size: 12px; }
 .shoes-inscription { font-size: 10px; }
+
+.shoes-app-canvas { position: absolute; left: 0; top: 0; }
 
 .shoes-stack .shoes-element { display: block; }
