@@ -1,0 +1,6 @@
+require 'shoes/core'
+require 'shoes/browser/app'
+require 'shoes/browser/slot'
+require 'shoes/browser/keypress'
+require 'shoes/browser/line'
+require 'shoes/browser/text_block'

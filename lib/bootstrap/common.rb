@@ -5,9 +5,5 @@ require 'native'
 require 'encoding'
 require 'math'
 
-require 'shoes/core'
-require 'shoes/browser/app'
-require 'shoes/browser/slot'
-require 'shoes/browser/keypress'
-require 'shoes/browser/line'
-require 'shoes/browser/text_block'
+# Both browser and opal backends require browser
+require 'shoes/browser'
