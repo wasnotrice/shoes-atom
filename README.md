@@ -80,9 +80,9 @@ The goal for this project is to provide two backends for Shoes apps: a `browser`
 The `lib` directory contains the bulk of the code:
 
 - `lib/bootstrap` contains files for bootstrapping the opal environment
-- `lib/shoes/core` contains monkeypatches to Shoes 4 so it can run on opal
 - `lib/shoes/browser` contains the browser backend
 - `lib/shoes/atom` contains the extensions to the browser backend for running in an atom shell
+- `lib/shoes/dsl.rb` contains a copy of `shoes/dsl` from `shoes-core`, with a single modification to enable it to run on opal
 
 There are a few auxiliary files that need to exist in order for apps to run using the browser and atom backends. You'll find these in `skeleton`.
 
