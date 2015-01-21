@@ -42,10 +42,11 @@ Proof-of-concept. You can pretty much just write this "Hello, world!" app. Curre
         $ git clone https://www.github.com/wasnotrice/shoes-atom.git
         $ cd shoes-atom
 
-2. Create a local copy of Shoes 4. This step is necessary temporarily to work around [an issue with prerelease versions of gems](https://github.com/rubygems/rubygems/issues/988).
+2. Create a local copy of Shoes 4. This step is necessary temporarily to work around [an issue with prerelease versions of gems](https://github.com/rubygems/rubygems/issues/988). _**Note:** Some changes have been made on Shoes 4 master that are (for the moment at least) incompatible with Opal. You should use shoes/shoes4@6f2d017 for building `shoes-core`._
 
         $ git clone https://www.github.com/shoes/shoes4.git
         $ cd shoes4
+        $ git co 6f2d017
         $ rake build:shoes-core
         $ cd ../shoes-atom/vendor
         $ gem unpack ../shoes4/shoes-core/pkg/shoes-core-4.0.0.pre3.gem
