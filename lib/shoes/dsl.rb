@@ -1,24 +1,15 @@
-# Opal error: NameError: uninitialized constant Shoes::SimpleDelegator
-# In shoes4, this happens to be required by logger.rb. If we don't load that
-# file, we don't get 'delegate'
 require 'delegate'
 require 'fileutils'
 require 'forwardable'
 require 'pathname'
-# Opal error: Can't find file "tmpdir"
-# require 'tmpdir'
-
+require 'tmpdir'
 require 'shoes/common/registration'
 
 class Shoes
-  PI = Math::PI
+  PI                  = Math::PI
   TWO_PI              = 2 * PI
   HALF_PI             = 0.5 * PI
-  if RUBY_ENGINE == 'opal'
-    DIR = '.'
-  else
-    DIR                 = Pathname.new(__FILE__).parent.parent.parent.to_s
-  end
+  DIR                 = Pathname.new(__FILE__).parent.parent.parent.to_s
   LOG                 = []
   LEFT_MOUSE_BUTTON   = 1
   MIDDLE_MOUSE_BUTTON = 2
@@ -78,6 +69,7 @@ require 'shoes/common/inspect'
 require 'shoes/dimension'
 require 'shoes/dimensions'
 require 'shoes/not_implemented_error'
+require 'shoes/file_not_found_error'
 require 'shoes/text_block_dimensions'
 
 require 'shoes/color'
@@ -109,10 +101,8 @@ require 'shoes/button'
 require 'shoes/configuration'
 require 'shoes/color'
 require 'shoes/dialog'
-# Opal error: couldn't find file 'open-uri'
-# require 'shoes/download'
-# Opal error: undefined method '[]' for Dir
-# require 'shoes/font'
+require 'shoes/download'
+require 'shoes/font'
 require 'shoes/gradient'
 require 'shoes/image'
 require 'shoes/image_pattern'
@@ -121,8 +111,7 @@ require 'shoes/line'
 require 'shoes/link'
 require 'shoes/link_hover'
 require 'shoes/list_box'
-# Opal error: undefined method '[]' for Dir
-# require 'shoes/logger'
+require 'shoes/logger'
 require 'shoes/oval'
 require 'shoes/point'
 require 'shoes/progress'
@@ -564,20 +553,24 @@ EOS
     end
 
     # Opal chokes on this syntax: def fg(*texts, color)
-    def fg(*texts)
-      color = texts.pop
-      Shoes::Span.new texts, { stroke: pattern(color) }
-    end
+    # So, temporarily, rewrite the parameter lists and pop the color manually
+    if RUBY_ENGINE == 'opal'
+      def fg(*texts)
+        color = texts.pop
+        Shoes::Span.new texts, { stroke: pattern(color) }
+      end
 
-    # See comment to fg
-    def bg(*texts)
-      color = texts.pop
-      Shoes::Span.new texts, { fill: pattern(color) }
+      def bg(*texts)
+        color = texts.pop
+        Shoes::Span.new texts, { fill: pattern(color) }
+      end
+    else
+      fail "This version of shoes/dsl can only be run on the Opal ruby engine"
     end
 
     def link(*texts, &blk)
       opts = normalize_style_for_element(Shoes::Link, texts)
-      create Shoes::Link, texts, opts, blk
+      Shoes::Link.new @__app__, texts, opts, blk
     end
 
     def span(*texts)

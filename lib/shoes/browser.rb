@@ -1,4 +1,3 @@
-require 'shoes/core'
 require 'shoes/browser/app'
 require 'shoes/browser/slot'
 require 'shoes/browser/keypress'

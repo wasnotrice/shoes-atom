@@ -21,15 +21,27 @@ BACKENDS.each do |backend|
   task 'build:shoes' => shoes_js
 
   file shoes_js => [BUILD_DIR, *SHOES_SOURCES] do
-    Opal::Processor.dynamic_require_severity = :warning
-
-    env = Sprockets::Environment.new
-    env.append_path 'lib'
+    Opal.append_path 'lib'
     Opal.use_gem 'shoes-core'
-    Opal.paths.each { |path| env.append_path path }
 
-    shoes = env["bootstrap/#{backend}"]
-    shoes.write_to shoes_js
+    options = {
+      compiler_options: {
+        dynamic_require_severity: :warning,
+        arity_check_enabled: true,
+      },
+      stubs: [
+        'tmpdir',
+        'shoes/download',
+        'shoes/font',
+        'shoes/logger',
+      ],
+    }
+    builder = Opal::Builder.new options
+    builder.build("bootstrap/#{backend}")
+
+    File.open(shoes_js, 'w') do |out|
+      out.write builder.to_s
+    end
   end
 end
 

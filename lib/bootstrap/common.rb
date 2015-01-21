@@ -5,5 +5,8 @@ require 'native'
 require 'encoding'
 require 'math'
 
-# Both browser and opal backends require browser
-require 'shoes/browser'
+class Shoes
+  #DIR = '.'
+end
+
+require 'shoes/core'
